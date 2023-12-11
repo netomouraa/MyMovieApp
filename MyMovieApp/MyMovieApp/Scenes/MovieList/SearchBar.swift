@@ -24,6 +24,7 @@ struct SearchBar: View {
             Button(action: {
                 if !text.isEmpty {
                     onSearch()
+                    hideKeyboard()
                 }
             }) {
                 Text("Pesquisar")
@@ -31,4 +32,9 @@ struct SearchBar: View {
             .padding(.trailing)
         }
     }
+    
+    private func hideKeyboard() {
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
+    
 }
