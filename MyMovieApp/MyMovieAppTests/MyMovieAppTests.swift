@@ -10,5 +10,8 @@ import XCTest
 
 final class MyMovieAppTests: XCTestCase {
 
+    func testExample() {
+
+    }
 
 }
