@@ -29,6 +29,10 @@ struct MovieListView: View {
                             MovieListItemView(movie: movie)
                         }
                     }
+                    .refreshable {
+                        viewModel.refreshMovies()
+                        searchText = ""
+                    }
                 }
             }
             .onAppear {
