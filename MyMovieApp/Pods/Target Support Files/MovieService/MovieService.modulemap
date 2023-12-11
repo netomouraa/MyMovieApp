@@ -1,0 +1,6 @@
+framework module MovieService {
+  umbrella header "MovieService-umbrella.h"
+
+  export *
+  module * { export * }
+}

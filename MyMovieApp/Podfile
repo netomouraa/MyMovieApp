@@ -1,0 +1,21 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'MyMovieApp' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for MyMovieApp
+#  pod 'MovieService', :path => '/Users/netomoura/Documents/Developer/MovieService'
+  pod 'MovieService', :git => 'https://github.com/netomouraa/MovieService.git', :tag => '0.4.0'
+
+  target 'MyMovieAppTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  target 'MyMovieAppUITests' do
+    # Pods for testing
+  end
+
+end
