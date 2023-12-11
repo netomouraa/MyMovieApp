@@ -25,6 +25,7 @@ enum MockError: Error {
 }
 
 class MockMovieService: MovieServiceProtocol {
+   
     let result: Result<MovieListModel, Error>
 
     init(result: Result<MovieListModel, Error>) {
@@ -38,4 +39,9 @@ class MockMovieService: MovieServiceProtocol {
     func searchMovies(query: String, completion: @escaping (Result<MovieListModel, Error>?) -> Void) {
        
     }
+    
+    func loadImage(for movie: MovieListItem, completion: @escaping (UIImage?) -> Void) {
+        
+    }
+    
 }

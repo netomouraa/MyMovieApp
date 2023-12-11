@@ -16,7 +16,7 @@ struct MovieDetailView: View {
     var body: some View {
         ScrollView {
             VStack {
-                if let image = movieImage {
+                if let image = viewModel.movieImage {
                     Image(uiImage: image)
                         .resizable()
                         .aspectRatio(contentMode: .fill)
@@ -32,11 +32,7 @@ struct MovieDetailView: View {
                         .frame(height: 40)
                         .padding(.bottom, 100)
                         .onAppear {
-                            viewModel.loadImage(for: movie) { image in
-                                DispatchQueue.main.async {
-                                    self.movieImage = image
-                                }
-                            }
+                            viewModel.loadImage(for: movie)
                         }
                 }
                 

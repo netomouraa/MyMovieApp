@@ -14,7 +14,7 @@ struct MoviePosterView: View {
     @StateObject private var viewModel = MovieDetailViewModel()
 
     var body: some View {
-           if let image = movieImage {
+        if let image = viewModel.movieImage {
                Image(uiImage: image)
                    .resizable()
                    .aspectRatio(contentMode: .fit)
@@ -25,11 +25,7 @@ struct MoviePosterView: View {
                    .aspectRatio(contentMode: .fit)
                    .frame(width: 80, height: 100)
                    .onAppear {
-                       viewModel.loadImage(for: movie) { image in
-                           DispatchQueue.main.async {
-                               self.movieImage = image
-                           }
-                       }
+                       viewModel.loadImage(for: movie)
                    }
            }
         
