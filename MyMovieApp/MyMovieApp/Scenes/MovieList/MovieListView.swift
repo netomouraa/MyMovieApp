@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import MovieService
 
 struct MovieListView: View {
     @StateObject private var viewModel = MovieListViewModel()

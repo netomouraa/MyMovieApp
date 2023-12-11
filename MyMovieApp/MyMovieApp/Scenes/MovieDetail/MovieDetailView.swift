@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import MovieService
 
 struct MovieDetailView: View {
     var movie: MovieListItem

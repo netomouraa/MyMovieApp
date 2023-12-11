@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import MovieService
 
 class MovieListViewModel: ObservableObject {
     @Published var movieListModel: MovieListModel?

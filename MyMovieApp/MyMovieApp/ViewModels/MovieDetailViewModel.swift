@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import MovieService
 
 class MovieDetailViewModel: ObservableObject {
 
