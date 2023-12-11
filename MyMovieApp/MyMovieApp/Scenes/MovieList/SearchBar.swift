@@ -10,17 +10,21 @@ import SwiftUI
 struct SearchBar: View {
     @Binding var text: String
     var onSearch: () -> Void
-
+    
     var body: some View {
         HStack {
             TextField("Pesquisar filmes", text: $text, onCommit: {
-                onSearch()
+                if !text.isEmpty {
+                    onSearch()
+                }
             })
             .textFieldStyle(RoundedBorderTextFieldStyle())
             .padding(.horizontal)
-
+            
             Button(action: {
-                onSearch()
+                if !text.isEmpty {
+                    onSearch()
+                }
             }) {
                 Text("Pesquisar")
             }
