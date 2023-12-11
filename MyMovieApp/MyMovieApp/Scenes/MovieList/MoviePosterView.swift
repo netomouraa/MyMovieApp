@@ -10,7 +10,7 @@ import SwiftUI
 struct MoviePosterView: View {
     var movie: MovieListItem
     @State private var movieImage: UIImage?
-    @StateObject private var viewModel = MovieListViewModel()
+    @StateObject private var viewModel = MovieDetailViewModel()
 
     var body: some View {
            if let image = movieImage {
