@@ -127,12 +127,12 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		9770B7A62B27B58900E796BF /* Network */ = {
+		9770B7A62B27B58900E796BF /* Services */ = {
 			isa = PBXGroup;
 			children = (
 				9770B7A72B27B59400E796BF /* MockMovieService.swift */,
 			);
-			path = Network;
+			path = Services;
 			sourceTree = "<group>";
 		};
 		97A47BC82B2413E600E45296 = {
@@ -160,7 +160,7 @@
 		97A47BD32B2413E600E45296 /* MyMovieApp */ = {
 			isa = PBXGroup;
 			children = (
-				9770B7A62B27B58900E796BF /* Network */,
+				9770B7A62B27B58900E796BF /* Services */,
 				97A47C0F2B2414EA00E45296 /* ViewModels */,
 				97A47C0C2B2414C200E45296 /* Scenes */,
 				97A47BFE2B2413FF00E45296 /* App */,
