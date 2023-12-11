@@ -26,6 +26,10 @@ class MovieListViewModel: ObservableObject {
         }
     }
     
+    func refreshMovies() {
+        getMovies()
+    }
+
     func searchMovies(query: String, completion: @escaping () -> Void) {
         movieService.searchMovies(query: query) { result in
             switch result {

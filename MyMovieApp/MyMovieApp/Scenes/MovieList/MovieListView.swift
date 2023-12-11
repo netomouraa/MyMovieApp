@@ -12,7 +12,7 @@ struct MovieListView: View {
     @State private var searchText = ""
     @State private var isSearching = false
     @State private var didAppear = false
-
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -22,7 +22,7 @@ struct MovieListView: View {
                         isSearching = false
                     }
                 })
-
+                
                 if let movies = viewModel.movieListModel?.results {
                     List(movies, id: \.id) { movie in
                         NavigationLink(destination: MovieDetailView(movie: movie)) {
@@ -45,6 +45,16 @@ struct MovieListView: View {
                 }
             )
             .navigationTitle("Filmes")
+            .navigationBarItems(trailing:
+            Button(action: {
+                viewModel.refreshMovies()
+                searchText = ""
+            }) {
+                Image(systemName: "arrow.clockwise.circle")
+                    .imageScale(.large)
+                    .padding()
+            }
+            )
         }
     }
 }
