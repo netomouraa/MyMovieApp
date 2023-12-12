@@ -13,6 +13,7 @@ struct MovieListView: View {
     @State private var searchText = ""
     @State private var isSearching = false
     @State private var didAppear = false
+    private let errorMessage = "Ocorreu um erro ao buscar os filmes."
     
     var body: some View {
         NavigationView {
@@ -24,17 +25,31 @@ struct MovieListView: View {
                     }
                 })
                 
+                
                 if let movies = viewModel.movieListModel?.results {
-                    List(movies, id: \.id) { movie in
-                        NavigationLink(destination: MovieDetailView(movie: movie)) {
-                            MovieListItemView(movie: movie)
+                    if movies.isEmpty {
+                        ErrorView(errorMessage: errorMessage) {
+                            viewModel.refreshMovies()
+                            searchText = ""
+                        }
+                    } else {
+                        List(movies, id: \.id) { movie in
+                            NavigationLink(destination: MovieDetailView(movie: movie)) {
+                                MovieListItemView(movie: movie)
+                            }
+                        }
+                        .refreshable {
+                            viewModel.refreshMovies()
+                            searchText = ""
                         }
                     }
-                    .refreshable {
+                } else if viewModel.isEmptyError {
+                    ErrorView(errorMessage: errorMessage) {
                         viewModel.refreshMovies()
                         searchText = ""
                     }
                 }
+                Spacer()
             }
             .onAppear {
                 if !didAppear {
@@ -50,16 +65,6 @@ struct MovieListView: View {
                 }
             )
             .navigationTitle("Filmes")
-            .navigationBarItems(trailing:
-            Button(action: {
-                viewModel.refreshMovies()
-                searchText = ""
-            }) {
-                Image(systemName: "arrow.clockwise.circle")
-                    .imageScale(.large)
-                    .padding()
-            }
-            )
         }
     }
 }

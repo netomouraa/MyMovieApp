@@ -10,6 +10,7 @@ import MovieService
 
 class MovieListViewModel: ObservableObject {
     @Published var movieListModel: MovieListModel?
+    @Published var isEmptyError = false
     private let movieService: MovieServiceProtocol
     
     init(movieService: MovieServiceProtocol = MovieService()) {
@@ -21,7 +22,9 @@ class MovieListViewModel: ObservableObject {
             switch result {
             case .success(let movies):
                 self.movieListModel = movies
+                self.isEmptyError = movies.results.isEmpty
             case .failure(let error):
+                self.isEmptyError = true
                 print("Erro ao obter filmes: \(error)")
             }
         }
@@ -36,7 +39,9 @@ class MovieListViewModel: ObservableObject {
             switch result {
             case .success(let movies):
                 self.movieListModel = movies
+                self.isEmptyError = movies.results.isEmpty
             case .failure(let error):
+                self.isEmptyError = true
                 print("Erro ao buscar filmes: \(error)")
             case .none:
                 break

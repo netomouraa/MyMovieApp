@@ -20,7 +20,20 @@ struct SearchBar: View {
             })
             .textFieldStyle(RoundedBorderTextFieldStyle())
             .padding(.horizontal)
-            
+            .overlay(
+                HStack {
+                    Spacer()
+                    Button(action: {
+                        text = ""
+                        hideKeyboard()
+                    }) {
+                        Image(systemName: "xmark.circle.fill")
+                            .foregroundColor(.gray)
+                            .padding(.trailing, 20)
+                    }
+                }
+            )
+
             Button(action: {
                 if !text.isEmpty {
                     onSearch()
