@@ -11,10 +11,6 @@
 		9738F9092B277B7B00B9962D /* MovieListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9738F9082B277B7B00B9962D /* MovieListViewModelTests.swift */; };
 		9770B7A52B27B54800E796BF /* MovieDetailViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9770B7A42B27B54800E796BF /* MovieDetailViewTests.swift */; };
 		9770B7A82B27B59400E796BF /* MockMovieService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9770B7A72B27B59400E796BF /* MockMovieService.swift */; };
-		9770B7AA2B27B5C600E796BF /* MovieListItemViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9770B7A92B27B5C600E796BF /* MovieListItemViewTests.swift */; };
-		9770B7AC2B27B5E300E796BF /* MoviePosterViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9770B7AB2B27B5E300E796BF /* MoviePosterViewTests.swift */; };
-		9770B7AE2B27B65D00E796BF /* MovieListViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9770B7AD2B27B65D00E796BF /* MovieListViewTests.swift */; };
-		9770B7B02B27B68000E796BF /* SearchBarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9770B7AF2B27B68000E796BF /* SearchBarTests.swift */; };
 		97A3CCC22B2633CC000C1EB3 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A3CCC12B2633CC000C1EB3 /* SearchBar.swift */; };
 		97A3CCC42B268C66000C1EB3 /* MovieDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A3CCC32B268C66000C1EB3 /* MovieDetailViewModel.swift */; };
 		97A47BD52B2413E600E45296 /* MyMovieApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A47BD42B2413E600E45296 /* MyMovieApp.swift */; };
@@ -59,10 +55,6 @@
 		9738F9082B277B7B00B9962D /* MovieListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListViewModelTests.swift; sourceTree = "<group>"; };
 		9770B7A42B27B54800E796BF /* MovieDetailViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewTests.swift; sourceTree = "<group>"; };
 		9770B7A72B27B59400E796BF /* MockMovieService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMovieService.swift; sourceTree = "<group>"; };
-		9770B7A92B27B5C600E796BF /* MovieListItemViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListItemViewTests.swift; sourceTree = "<group>"; };
-		9770B7AB2B27B5E300E796BF /* MoviePosterViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviePosterViewTests.swift; sourceTree = "<group>"; };
-		9770B7AD2B27B65D00E796BF /* MovieListViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListViewTests.swift; sourceTree = "<group>"; };
-		9770B7AF2B27B68000E796BF /* SearchBarTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarTests.swift; sourceTree = "<group>"; };
 		97A3CCC12B2633CC000C1EB3 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		97A3CCC32B268C66000C1EB3 /* MovieDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewModel.swift; sourceTree = "<group>"; };
 		97A47BD12B2413E600E45296 /* MyMovieApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyMovieApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -184,10 +176,6 @@
 				97A47BE52B2413EA00E45296 /* MyMovieAppTests.swift */,
 				9738F9082B277B7B00B9962D /* MovieListViewModelTests.swift */,
 				9770B7A42B27B54800E796BF /* MovieDetailViewTests.swift */,
-				9770B7A92B27B5C600E796BF /* MovieListItemViewTests.swift */,
-				9770B7AB2B27B5E300E796BF /* MoviePosterViewTests.swift */,
-				9770B7AD2B27B65D00E796BF /* MovieListViewTests.swift */,
-				9770B7AF2B27B68000E796BF /* SearchBarTests.swift */,
 			);
 			path = MyMovieAppTests;
 			sourceTree = "<group>";
@@ -512,12 +500,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9770B7AC2B27B5E300E796BF /* MoviePosterViewTests.swift in Sources */,
-				9770B7AE2B27B65D00E796BF /* MovieListViewTests.swift in Sources */,
-				9770B7AA2B27B5C600E796BF /* MovieListItemViewTests.swift in Sources */,
 				9770B7A52B27B54800E796BF /* MovieDetailViewTests.swift in Sources */,
 				97A47BE62B2413EA00E45296 /* MyMovieAppTests.swift in Sources */,
-				9770B7B02B27B68000E796BF /* SearchBarTests.swift in Sources */,
 				9738F9092B277B7B00B9962D /* MovieListViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
