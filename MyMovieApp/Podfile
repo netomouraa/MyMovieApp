@@ -6,8 +6,9 @@ target 'MyMovieApp' do
   use_frameworks!
 
   # Pods for MyMovieApp
-#  pod 'MovieService', :path => '/Users/netomoura/Documents/Developer/MovieService'
-  pod 'MovieService', :git => 'https://github.com/netomouraa/MovieService.git', :tag => '2.0.0'
+  #  pod 'MovieService', :path => '/Users/netomoura/Documents/Developer/MovieService'
+  #  pod 'MovieService', :git => 'https://github.com/netomouraa/MovieService.git', :tag => '2.0.0'
+  pod 'MovieService', :git => 'https://github.com/netomouraa/MovieService.git', :tag => '3.0.1' # Combine
 
   target 'MyMovieAppTests' do
     inherit! :search_paths
