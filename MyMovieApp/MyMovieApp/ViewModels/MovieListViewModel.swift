@@ -6,47 +6,60 @@
 //
 
 import SwiftUI
+import Combine
 import MovieService
 
 class MovieListViewModel: ObservableObject {
     @Published var movieListModel: MovieListModel?
     @Published var isEmptyError = false
+    @State var isSearching = false
     private let movieService: MovieServiceProtocol
-    
+    private var cancellables: Set<AnyCancellable> = []
+
     init(movieService: MovieServiceProtocol = MovieService()) {
         self.movieService = movieService
     }
     
     func getMovies() {
-        movieService.getMovies { result in
-            switch result {
-            case .success(let movies):
+        movieService.getMovies()
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                case .finished:
+                    break
+                case .failure(let error):
+                    print("Erro ao obter filmes: \(error)")
+                }
+            }, receiveValue: { movies in
                 self.movieListModel = movies
-                self.isEmptyError = movies.results.isEmpty
-            case .failure(let error):
-                self.isEmptyError = true
-                print("Erro ao obter filmes: \(error)")
-            }
-        }
+            })
+            .store(in: &cancellables)
+        
     }
     
     func refreshMovies() {
         getMovies()
     }
-
-    func searchMovies(query: String, completion: @escaping () -> Void) {
-        movieService.searchMovies(query: query) { result in
-            switch result {
-            case .success(let movies):
-                self.movieListModel = movies
-                self.isEmptyError = movies.results.isEmpty
-            case .failure(let error):
-                self.isEmptyError = true
-                print("Erro ao buscar filmes: \(error)")
-            case .none:
-                break
-            }
-            completion()
+    
+    func searchMovies(query: String) {
+        if query.isEmpty {
+            getMovies()
+        } else {
+            movieService.searchMovies(query: query)
+                .receive(on: DispatchQueue.main)
+                .sink(receiveCompletion: { completion in
+                    switch completion {
+                    case .finished:
+                        break
+                    case .failure(let error):
+                        print("Erro ao buscar filmes: \(error)")
+                        self.isEmptyError = true
+                    }
+                }, receiveValue: { [weak self] movies in
+                    self?.movieListModel = movies
+                    self?.isEmptyError = movies.results.isEmpty
+                    self?.isSearching = false
+                })
+                .store(in: &cancellables)
         }
     }
     

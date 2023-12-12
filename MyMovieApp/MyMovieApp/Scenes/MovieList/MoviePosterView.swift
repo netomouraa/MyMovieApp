@@ -25,7 +25,7 @@ struct MoviePosterView: View {
                    .aspectRatio(contentMode: .fit)
                    .frame(width: 80, height: 100)
                    .onAppear {
-                       viewModel.loadImage(for: movie)
+                       viewModel.loadMovieImage(for: movie)
                    }
            }
         

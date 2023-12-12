@@ -11,7 +11,6 @@ import MovieService
 struct MovieListView: View {
     @StateObject private var viewModel = MovieListViewModel()
     @State private var searchText = ""
-    @State private var isSearching = false
     @State private var didAppear = false
     private let errorMessage = "Ocorreu um erro ao buscar os filmes."
     
@@ -19,12 +18,9 @@ struct MovieListView: View {
         NavigationView {
             VStack {
                 SearchBar(text: $searchText, onSearch: {
-                    isSearching = true
-                    viewModel.searchMovies(query: searchText) {
-                        isSearching = false
-                    }
+                    viewModel.isSearching = true
+                    self.viewModel.searchMovies(query: searchText)
                 })
-                
                 
                 if let movies = viewModel.movieListModel?.results {
                     if movies.isEmpty {
@@ -59,7 +55,7 @@ struct MovieListView: View {
             }
             .overlay(
                 Group {
-                    if isSearching {
+                    if viewModel.isSearching {
                         ProgressView()
                     }
                 }

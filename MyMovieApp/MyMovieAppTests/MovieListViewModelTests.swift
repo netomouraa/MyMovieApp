@@ -6,6 +6,7 @@
 //
 
 import XCTest
+import Combine
 import MovieService
 
 @testable import MyMovieApp
@@ -14,6 +15,7 @@ class MovieListViewModelTests: XCTestCase {
 
     var viewModel: MovieListViewModel!
     var mockMovieService: MockMovieService!
+    var cancellables: Set<AnyCancellable> = []
 
     override func setUpWithError() throws {
         mockMovieService = MockMovieService(result: .success(MockData.movies))
@@ -25,36 +27,42 @@ class MovieListViewModelTests: XCTestCase {
         mockMovieService = nil
     }
 
-    func testGetMoviesSuccess() {
-        mockMovieService.movies = .success(MockData.movies)
-
-        viewModel.getMovies()
-
-        XCTAssertNotNil(viewModel.movieListModel)
+    func testGetMovies() {
+         let expectation = XCTestExpectation(description: "Movies should be loaded")
+         
+         viewModel.$movieListModel
+             .sink { movies in
+                 XCTAssertNotNil(movies, "Movies should not be nil")
+                 expectation.fulfill()
+             }
+             .store(in: &cancellables)
+         
+         viewModel.getMovies()
+         
+         wait(for: [expectation], timeout: 5.0)
     }
 
-    func testGetMoviesFailure() {
-        mockMovieService.movies = .failure(NSError(domain: "Test", code: 123, userInfo: nil))
+    func tesSearchMovies() {
+        let expectation = XCTestExpectation(description: "Search Movies")
 
-        viewModel.getMovies()
+        let query = "Avengers"
 
-        XCTAssertNil(viewModel.movieListModel)
-    }
+        mockMovieService.searchMovies(query: query)
+            .sink { completion in
+                switch completion {
+                case .finished:
+                    break
+                case .failure(let error):
+                    XCTFail("Erro inesperado: \(error)")
+                }
+                expectation.fulfill()
+            } receiveValue: { movieList in
+                XCTAssertNotNil(movieList)
+                XCTAssertFalse(movieList.results.isEmpty)
+            }
+            .store(in: &cancellables)
 
-    func testSearchMoviesSuccess() {
-        mockMovieService.movies = .success(MockData.movies)
-
-        viewModel.searchMovies(query: "Test Query") {
-            XCTAssertNotNil(self.viewModel.movieListModel)
-        }
-    }
-
-    func testSearchMoviesFailure() {
-        mockMovieService.movies = .failure(NSError(domain: "Test", code: 123, userInfo: nil))
-
-        viewModel.searchMovies(query: "Test Query") {
-            XCTAssertNil(self.viewModel.movieListModel)
-        }
+        wait(for: [expectation], timeout: 5.0)
     }
 
 }

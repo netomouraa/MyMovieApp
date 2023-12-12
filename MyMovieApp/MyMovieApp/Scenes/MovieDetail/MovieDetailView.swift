@@ -32,7 +32,7 @@ struct MovieDetailView: View {
                         .frame(height: 40)
                         .padding(.bottom, 100)
                         .onAppear {
-                            viewModel.loadImage(for: movie)
+                            viewModel.loadMovieImage(for: movie)
                         }
                 }
                 

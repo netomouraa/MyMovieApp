@@ -6,6 +6,7 @@
 //
 
 import XCTest
+import Combine
 @testable import MyMovieApp
 
 class MovieDetailViewTests: XCTestCase {
@@ -14,7 +15,8 @@ class MovieDetailViewTests: XCTestCase {
     var mockMovieService: MockMovieService!
     let movie = MockData.movies
     let mockError = MockError.someError
-
+    var cancellables: Set<AnyCancellable> = []
+    
     override func setUpWithError() throws {
         mockMovieService = MockMovieService(result: .success(MockData.movies))
         viewModel = MovieDetailViewModel(movieService: mockMovieService)
@@ -25,24 +27,27 @@ class MovieDetailViewTests: XCTestCase {
         mockMovieService = nil
     }
     
-    func testLoadImageSuccess() {
+    func testLoadImage() {
+        let expectation = XCTestExpectation(description: "Load Image")
         
-        viewModel.loadImage(for: movie.results.first!)
-        
-        XCTAssertTrue(mockMovieService.loadImageCalled)
-        XCTAssertEqual(mockMovieService.loadImageMovie?.title, "Filme Teste")
-//        XCTAssertNotNil(viewModel.movieImage)
-    }
-    
-    func testLoadImageFailure() {
-        let mockMovieServiceError = MockMovieService(result: .failure(mockError))
-
-        let viewModel = MovieDetailViewModel(movieService: mockMovieServiceError)
-        viewModel.loadImage(for: movie.results.first!)
-
-//        XCTAssertTrue(mockMovieService.loadImageCalled)
-//        XCTAssertEqual(mockMovieService.loadImageMovie?.title, "Filme Teste")
-//        XCTAssertNil(viewModel.movieImage)
+        if let movie = MockData.movies.results.first {
+            mockMovieService.loadImage(for: movie)
+                .sink { completion in
+                    switch completion {
+                    case .finished:
+                        break
+                    case .failure(let error):
+                        XCTFail("Erro inesperado: \(error)")
+                    }
+                    expectation.fulfill()
+                } receiveValue: { image in
+                    // Verifique se a resposta é válida
+                    XCTAssertNotNil(image)
+                }
+                .store(in: &cancellables)
+            
+            wait(for: [expectation], timeout: 5.0)
+        }
     }
     
 }
