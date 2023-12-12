@@ -24,6 +24,20 @@ MovieService é o serviço para interação com a API de filmes.
 2. Abra o projeto no Xcode.
 3. Execute o aplicativo em um simulador ou dispositivo.
 
+## Configuração
+
+Certifique-se de instalar as dependências usando o CocoaPods antes de executar o aplicativo.
+
+1. Abra um terminal e navegue até o diretório do projeto.
+
+2. Execute o comando:
+
+`pod install`
+
+Certifique-se de que você possui o CocoaPods instalado em seu sistema. Se não tiver, você pode instalá-lo usando:
+
+`sudo gem install cocoapods`
+
 ## Dependências
 
 O projeto utiliza o framework MovieService para interagir com a API de filmes.
