@@ -18,12 +18,6 @@ MovieService é o serviço para interação com a API de filmes.
 - Detalhes de cada filme, incluindo uma imagem, título e sinopse
 - Pesquisa de filmes por nome
 
-## Como Executar o Projeto
-
-1. Clone o repositório.
-2. Abra o projeto no Xcode.
-3. Execute o aplicativo em um simulador ou dispositivo.
-
 ## Configuração
 
 Certifique-se de instalar as dependências usando o CocoaPods antes de executar o aplicativo.
@@ -41,6 +35,12 @@ Certifique-se de que você possui o CocoaPods instalado em seu sistema. Se não 
 ## Dependências
 
 O projeto utiliza o framework MovieService para interagir com a API de filmes.
+
+## Como Executar o Projeto
+
+1. Clone o repositório.
+2. Abra o projeto no Xcode.
+3. Execute o aplicativo em um simulador ou dispositivo.
 
 ## Requisitos do Sistema
 - iOS 14.0+
