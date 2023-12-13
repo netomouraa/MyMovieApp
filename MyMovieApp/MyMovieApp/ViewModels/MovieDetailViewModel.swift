@@ -21,7 +21,7 @@ class MovieDetailViewModel: ObservableObject {
     
     func loadMovieImage(for movie: MovieListItem) {
         movieService.loadImage(for: movie)
-            .receive(on: DispatchQueue.main)
+            .receive(on: DispatchQueue.main) // Atualiza na main thread
             .sink { completion in
                 switch completion {
                 case .finished:
@@ -30,7 +30,7 @@ class MovieDetailViewModel: ObservableObject {
                     print("Erro ao carregar imagem: \(error)")
                 }
             } receiveValue: { image in
-                self.movieImage = image
+                self.movieImage = image        // Atualiza a imagem na interface do usuário
             }
             .store(in: &cancellables)
     }

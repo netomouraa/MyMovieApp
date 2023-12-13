@@ -8,12 +8,14 @@
 import SwiftUI
 
 struct SearchBar: View {
-    @Binding var text: String
-    var onSearch: () -> Void
+    @Binding var text: String    // Binding para o texto de pesquisa
+    var onSearch: () -> Void    // Closure para realizar a ação de pesquisa
     
     var body: some View {
         HStack {
+            // Campo de texto para entrada de pesquisa
             TextField("Pesquisar filmes", text: $text, onCommit: {
+                // Realiza a pesquisa quando o botão "return" é pressionado
                 if !text.isEmpty {
                     onSearch()
                 }
@@ -23,6 +25,7 @@ struct SearchBar: View {
             .overlay(
                 HStack {
                     Spacer()
+                    // Botão para limpar o texto de pesquisa e esconder o teclado
                     Button(action: {
                         text = ""
                         hideKeyboard()
@@ -34,6 +37,7 @@ struct SearchBar: View {
                 }
             )
 
+            // Botão para iniciar a pesquisa
             Button(action: {
                 if !text.isEmpty {
                     onSearch()
@@ -46,6 +50,7 @@ struct SearchBar: View {
         }
     }
     
+    // Método para esconder o teclado
     private func hideKeyboard() {
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }

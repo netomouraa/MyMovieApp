@@ -13,11 +13,11 @@ struct MovieListItemView: View {
 
     var body: some View {
         HStack {
-            MoviePosterView(movie: movie)
+            MoviePosterView(movie: movie)             // Exibe o cartaz do filme
             VStack(alignment: .leading) {
-                Text(movie.title)
+                Text(movie.title) // Título do filme
                     .font(.headline)
-                Text(movie.overview)
+                Text(movie.overview) // Descrição do filme com limite de linhas e cor cinza
                     .lineLimit(4)
                     .font(.subheadline)
                     .foregroundColor(.gray)

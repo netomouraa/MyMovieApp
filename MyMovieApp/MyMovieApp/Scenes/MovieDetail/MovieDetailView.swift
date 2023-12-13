@@ -16,6 +16,7 @@ struct MovieDetailView: View {
     var body: some View {
         ScrollView {
             VStack {
+                // Exibe a imagem do filme se estiver disponível
                 if let image = viewModel.movieImage {
                     Image(uiImage: image)
                         .resizable()
@@ -25,6 +26,7 @@ struct MovieDetailView: View {
                         .padding(.bottom, 100)
                     
                 } else {
+                    // Exibe uma imagem padrão se a imagem do filme não estiver disponível
                     Image(systemName: "photo")
                         .resizable()
                         .aspectRatio(contentMode: .fill)
@@ -32,14 +34,16 @@ struct MovieDetailView: View {
                         .frame(height: 40)
                         .padding(.bottom, 100)
                         .onAppear {
+                            // Carrega a imagem do filme quando a view aparece
                             viewModel.loadMovieImage(for: movie)
                         }
                 }
-                
+                // Exibe o título do filme
                 Text(movie.title)
                     .font(.largeTitle)
                     .padding()
                 
+                // Exibe a descrição do filme
                 Text(movie.overview)
                     .font(.subheadline)
                     .multilineTextAlignment(.leading)

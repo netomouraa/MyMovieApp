@@ -30,6 +30,7 @@ class MovieListViewModel: ObservableObject {
                     print("Erro ao obter filmes: \(error)")
                 }
             }, receiveValue: { movies in
+                // Atualiza a lista de filmes
                 self.movieListModel = movies
             })
             .store(in: &cancellables)
@@ -42,7 +43,7 @@ class MovieListViewModel: ObservableObject {
     
     func searchMovies(query: String) {
         if query.isEmpty {
-            getMovies()
+            getMovies()   // Se a pesquisa estiver vazia, atualize a lista de filmes
         } else {
             movieService.searchMovies(query: query)
                 .receive(on: DispatchQueue.main)
@@ -52,15 +53,16 @@ class MovieListViewModel: ObservableObject {
                         break
                     case .failure(let error):
                         print("Erro ao buscar filmes: \(error)")
-                        self.isEmptyError = true
+                        self.isEmptyError = true  // Configura a flag para indicar um erro de lista vazia
                     }
                 }, receiveValue: { [weak self] movies in
+                    // Atualiza a lista de filmes e as flags
                     self?.movieListModel = movies
                     self?.isEmptyError = movies.results.isEmpty
-                    self?.isSearching = false
+                    self?.isSearching = false // Oculta isSearching após a resposta do searchMovies
                 })
                 .store(in: &cancellables)
         }
-    }
+    } 
     
 }
